@@ -2,7 +2,7 @@
 
 namespace FrameworkData.Migrations
 {
-    public partial class initialONE : Migration
+    public partial class initialone : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

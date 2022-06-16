@@ -9,8 +9,10 @@ namespace FrameworkData.Model
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("DepartamentModel")]
+        [Required]
+        [ForeignKey("DepartmentModel")]
         public int DepartamentModelId { get; set; }
+        public DepartmentModel DepartmentModel { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -19,5 +21,13 @@ namespace FrameworkData.Model
         [Required]
         public int Age { get; set; }
         public List<PatientModel> patients { get; set; }
+        public DoctorModel(string name, string lastName)
+        {
+            
+            Name = name;
+            LastName = lastName;
+         
+          
+        }
     }
 }

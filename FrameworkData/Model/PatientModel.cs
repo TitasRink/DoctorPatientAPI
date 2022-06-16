@@ -18,7 +18,11 @@ namespace FrameworkData.Model
         [Required]
         public string Address { get; set; }
         [Required]
-
         public List<DoctorModel> doctors { get; set; }
+        public PatientModel(string name, string lastname)
+        {
+            Name = name;
+            Lastname = lastname;
+        }
     }
 }
