@@ -1,15 +1,15 @@
-﻿namespace FrameworkData.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FrameworkData.Model
 {
     public class DepartmentModel 
     {
+        [Key]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Address { get; set; }
-        public DepartmentModel(int id, string name, string address)
-        {
-            Id = id;
-            Name = name;
-            Address = address;
-        }
+     
     }
 }
