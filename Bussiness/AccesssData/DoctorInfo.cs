@@ -9,9 +9,12 @@ namespace Bussiness.AccesssData
         {
             using (var context = new DataConection())
             {
-                DoctorModel doc = new DoctorModel(name, address);
-                context.Doctors.Add(doc);
-                context.SaveChanges();
+                if (context.Doctors == null)
+                {
+                    DoctorModel doc = new DoctorModel(name, address);
+                    context.Doctors.Add(doc);
+                    context.SaveChanges();
+                }
             }
         }
     }

@@ -9,9 +9,13 @@ namespace Bussiness.AccesssData
         {
             using (var context = new DataConection())
             {
-                PatientModel pat = new PatientModel(name, address);
-                context.Patients.Add(pat);
-                context.SaveChanges();
+                if (context.Patients == null)
+                {
+                    PatientModel pat = new PatientModel(name, address);
+                    context.Patients.Add(pat);
+                    context.SaveChanges();
+                }
+              
             }
         }
     }

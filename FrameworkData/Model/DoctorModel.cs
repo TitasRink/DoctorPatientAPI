@@ -21,13 +21,11 @@ namespace FrameworkData.Model
         [Required]
         public int Age { get; set; }
         public List<PatientModel> patients { get; set; }
+
         public DoctorModel(string name, string lastName)
         {
-            
             Name = name;
             LastName = lastName;
-         
-          
         }
     }
 }

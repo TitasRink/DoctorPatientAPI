@@ -2,6 +2,7 @@
 using FrameworkData.DataContext;
 using FrameworkData.Model;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bussiness.AccesssData
 
@@ -12,22 +13,38 @@ namespace Bussiness.AccesssData
         {
             using (var context = new DataConection())
             {
-                DepartmentModel dep = new DepartmentModel(name, address);
-                context.Departments.Add(dep);
+                if (context.Departments == null)
+                {
+                    DepartmentModel dep = new DepartmentModel(name, address);
+                    context.Departments.Add(dep);
+                    context.SaveChanges();
+                }
+            }
+        }
+        public List<DepartmentModel> GetDepartment()
+        {
+            using (var context = new DataConection())
+            {
+                var returnData = context.Departments.ToList();
+                return returnData;
+            }
+        }
+        public void AddDoctors(int depId , int doctorsNum)
+        {
+            using (var context = new DataConection())
+            {
+                var dep = context.Departments.Where(x=>x.Id == depId).SingleOrDefault();
+                var doc = context.Doctors.ToList();
+                for (int i = 0; i < doctorsNum; i++)
+                {
+                    foreach (var item in doc)
+                    {
+                        dep.doctors.Add(item);
+                    }                    
+                }
+
                 context.SaveChanges();
             }
         }
     }
-    //public void AddDoctors(DepartmentModel department)
-    //{
-    //    using (var context = new DataConection())
-    //    {
-    //        List<DoctorModel> doctor = new List<DoctorModel>();
-
-    //        doctor.Add(new DoctorModel("asd", "dasd"));
-
-    //        context.Departments.Add(department);
-    //        context.SaveChanges();
-    //    }
-    //}
 }
