@@ -8,18 +8,26 @@ namespace Bussiness.AccesssData
 {
     public class DepartmentInfo
     {
-        public void CreatDepartment()
+        public void CreatDepartment(string name, string address)
         {
-            
-            DataConection db = new DataConection();
-
-            List<DoctorModel> depart = new List<DoctorModel>
+            using (var context = new DataConection())
             {
-                new DoctorModel("pirmas vardas","pirma pavarde"),
-                new DoctorModel("antras vardas","antra pavarde"),
-                new DoctorModel("trecias vardas","trecia pavarde"),
-
-            };
+                DepartmentModel dep = new DepartmentModel(name, address);
+                context.Departments.Add(dep);
+                context.SaveChanges();
+            }
         }
-     }
+    }
+    //public void AddDoctors(DepartmentModel department)
+    //{
+    //    using (var context = new DataConection())
+    //    {
+    //        List<DoctorModel> doctor = new List<DoctorModel>();
+
+    //        doctor.Add(new DoctorModel("asd", "dasd"));
+
+    //        context.Departments.Add(department);
+    //        context.SaveChanges();
+    //    }
+    //}
 }
