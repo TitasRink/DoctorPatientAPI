@@ -5,17 +5,12 @@ namespace Bussiness.AccesssData
 {
     public class DoctorInfo
     {
-        public void CreatDoctor(string name, string address)
+        public void CreatDoctor(string name, string lastname, int age)
         {
-            using (var context = new DataConection())
-            {
-                if (context.Doctors == null)
-                {
-                    DoctorModel doc = new DoctorModel(name, address);
-                    context.Doctors.Add(doc);
-                    context.SaveChanges();
-                }
-            }
+            var context = new DataConection();
+            DoctorModel doc = new DoctorModel(name,lastname,age);
+            context.Doctors.Add(doc);
+            context.SaveChanges();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace FrameworkData.Migrations
 {
-    public partial class initialone : Migration
+    public partial class initialONE : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,11 +30,18 @@ namespace FrameworkData.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Speciality = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: false)
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    DepartmentModelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Doctors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Doctors_Departments_DepartmentModelId",
+                        column: x => x.DepartmentModelId,
+                        principalTable: "Departments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,13 +50,21 @@ namespace FrameworkData.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    DepartamentModelId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DepartmentModelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patients", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Patients_Departments_DepartmentModelId",
+                        column: x => x.DepartmentModelId,
+                        principalTable: "Departments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,13 +95,20 @@ namespace FrameworkData.Migrations
                 name: "IX_DoctorModelPatientModel_patientsId",
                 table: "DoctorModelPatientModel",
                 column: "patientsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Doctors_DepartmentModelId",
+                table: "Doctors",
+                column: "DepartmentModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patients_DepartmentModelId",
+                table: "Patients",
+                column: "DepartmentModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Departments");
-
             migrationBuilder.DropTable(
                 name: "DoctorModelPatientModel");
 
@@ -95,6 +117,9 @@ namespace FrameworkData.Migrations
 
             migrationBuilder.DropTable(
                 name: "Patients");
+
+            migrationBuilder.DropTable(
+                name: "Departments");
         }
     }
 }
