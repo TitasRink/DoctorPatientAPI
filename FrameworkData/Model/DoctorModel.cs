@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +8,7 @@ namespace FrameworkData.Model
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("DepartamentModel")]
+        [ForeignKey("DepartmentModel")]
         public int DepartamentModelId { get; set; }
         [Required]
         public string Name { get; set; }
@@ -19,5 +18,12 @@ namespace FrameworkData.Model
         [Required]
         public int Age { get; set; }
         public List<PatientModel> patients { get; set; }
+
+        public DoctorModel(string name, string lastName, int age)
+        {
+            Name = name;
+            LastName = lastName;
+            Age = age;
+        }
     }
 }
