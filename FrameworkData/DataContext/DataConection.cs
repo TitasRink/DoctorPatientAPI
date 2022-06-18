@@ -1,9 +1,9 @@
 ﻿using FrameworkData.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace FrameworkData
+namespace FrameworkData.DataContext
 {
-    public class FrameworkDataBase : DbContext
+    public class DataConection : DbContext
     {
         public DbSet<DepartmentModel> Departments { get; set; }
         public DbSet<DoctorModel> Doctors { get; set; }
