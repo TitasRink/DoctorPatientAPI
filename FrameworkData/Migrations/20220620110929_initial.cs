@@ -2,7 +2,7 @@
 
 namespace FrameworkData.Migrations
 {
-    public partial class initialONE : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace FrameworkData.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Speciality = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    DepartmentModelId = table.Column<int>(type: "int", nullable: true)
+                    DepartmentModelId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,7 @@ namespace FrameworkData.Migrations
                         column: x => x.DepartmentModelId,
                         principalTable: "Departments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

@@ -4,7 +4,7 @@ using FrameworkData.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bussiness.AccesssData
+namespace Bussinesss.AccesssData
 
 {
     public class DepartmentInfo

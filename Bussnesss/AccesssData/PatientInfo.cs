@@ -3,7 +3,7 @@ using FrameworkData.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bussiness.AccesssData
+namespace Bussinesss.AccesssData
 {
     public class PatientInfo
     {
@@ -25,7 +25,7 @@ namespace Bussiness.AccesssData
         public List<PatientModel> GetDepartmentPatients(int depID)
         {
             var context = new DataConection();
-            var result = context.Patients.Where(x => x == depID).ToList();
+            var result = context.Patients.Where(x => x.DepartmentModelId == depID).ToList();
             return result;
         }
     }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FrameworkData.Migrations
 {
     [DbContext(typeof(DataConection))]
-    [Migration("20220619141209_initialtwo")]
-    partial class initialtwo
+    [Migration("20220620110929_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,7 +66,7 @@ namespace FrameworkData.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartmentModelId")
+                    b.Property<int>("DepartmentModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -134,7 +134,9 @@ namespace FrameworkData.Migrations
                 {
                     b.HasOne("FrameworkData.Model.DepartmentModel", null)
                         .WithMany("doctors")
-                        .HasForeignKey("DepartmentModelId");
+                        .HasForeignKey("DepartmentModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FrameworkData.Model.PatientModel", b =>

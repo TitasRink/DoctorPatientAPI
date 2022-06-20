@@ -64,10 +64,7 @@ namespace FrameworkData.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("DepartamentModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DepartmentModelId")
+                    b.Property<int>("DepartmentModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -97,9 +94,6 @@ namespace FrameworkData.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DepartamentModelId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("DepartmentModelId")
                         .HasColumnType("int");
@@ -138,7 +132,9 @@ namespace FrameworkData.Migrations
                 {
                     b.HasOne("FrameworkData.Model.DepartmentModel", null)
                         .WithMany("doctors")
-                        .HasForeignKey("DepartmentModelId");
+                        .HasForeignKey("DepartmentModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FrameworkData.Model.PatientModel", b =>

@@ -3,15 +3,15 @@ using FrameworkData.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bussiness.AccesssData
+namespace Bussinesss.AccesssData
 {
     public class DoctorInfo
     {
-        public void CreatDoctor(string name, string lastname, int age, int id)
+        public void CreatDoctor(string name, string lastname, int age)
         {
             var context = new DataConection();
-            DoctorModel doc = new DoctorModel(name,lastname,age, id);
-            context.Add(doc);
+            DoctorModel doc = new DoctorModel(name,lastname,age);
+            context.Doctors.Add(doc);
             context.SaveChanges();
         }
         public void AddToDepartment(int depId, int doctorNum)
