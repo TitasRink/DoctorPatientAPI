@@ -21,6 +21,7 @@ namespace APIHospital.Controllers
             result.CreatDepartment(name, address, docNumber, patNumber);
         }
 
+
         //[HttpPost("Add Doctor to Department")]
         //public void AddDoctorToDepartment(int depId, int doctorsNum)
         //    {
