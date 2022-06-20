@@ -60,8 +60,7 @@ namespace Bussiness.AccesssData
                         dep.doctors.Add(item);
                     }                    
                 }
-            context.Departments.Add(new DepartmentModel(depName, depAddress, doc, pat));
-             context.SaveChanges();
+            context.SaveChanges();
         }
     }
 }

@@ -64,6 +64,9 @@ namespace FrameworkData.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
+                    b.Property<int>("DepartamentModelId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("DepartmentModelId")
                         .HasColumnType("int");
 
@@ -94,6 +97,9 @@ namespace FrameworkData.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DepartamentModelId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("DepartmentModelId")
                         .HasColumnType("int");
