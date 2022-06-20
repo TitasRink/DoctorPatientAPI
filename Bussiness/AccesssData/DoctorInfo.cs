@@ -36,8 +36,7 @@ namespace Bussiness.AccesssData
             
             return (List<DoctorModel>)dd;
         }
-       
-        public void Addpat(int docNum, int patNum)
+        public void AddPatientToDoctor(int docNum, int patNum)
         {
             var context = new DataConection();
             var dep = context.Doctors.Where(x => x.Id == docNum).SingleOrDefault();
