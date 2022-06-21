@@ -73,5 +73,11 @@ namespace APIHospital.Controllers
             var result = dep.Doctorinfo(departmentID);
             return result;
             }
+        //[HttpPost("Add Patient to department")]
+        //public void AddpatientToDep(int depId, int patId)
+        //    {
+        //    var result = new PatientInfo();
+        //    result.AddToDepartament(depId, patId);
+        //    }
     }
 }
