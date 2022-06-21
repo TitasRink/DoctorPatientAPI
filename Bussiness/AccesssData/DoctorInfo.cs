@@ -7,18 +7,18 @@ namespace Bussiness.AccesssData
 {
     public class DoctorInfo
     {
-        public void CreatDoctor(string name, string lastname, int age)
+        public void CreatDoctor(string name, string lastname, int age, int id)
         {
             var context = new DataConection();
-            DoctorModel doc = new DoctorModel(name,lastname,age);
-            context.Doctors.Add(doc);
+            DoctorModel doc = new DoctorModel(name,lastname,age, id);
+            context.Add(doc);
             context.SaveChanges();
         }
-        public void AddToDepartment(int depId, int doctorsNum)
+        public void AddToDepartment(int depId, int doctorNum)
         {
             var context = new DataConection();
             var dep = context.Departments.Where(x => x.Id == depId).SingleOrDefault();
-            var doc = context.Doctors.Where(x => x.Id == doctorsNum).SingleOrDefault();
+            var doc = context.Doctors.Where(x => x.Id == doctorNum).SingleOrDefault();
             dep.doctors.Add(doc);
             context.SaveChanges();
         }
@@ -32,25 +32,16 @@ namespace Bussiness.AccesssData
         {
             var context = new DataConection();
             //var rr = context.Doctors.Where(x => docId == x.patients.);
-            var dd = context.Doctors.Where(x => x.Id == docId);
-           
-
-
-            System.Console.WriteLine("dsfs");
-
-
-            return (List<DoctorModel>)dd;
+            var dd = context.Doctors.Where(x => x.Id == docId).ToList();
             
+            return (List<DoctorModel>)dd;
         }
-        // testuojam
-        public void Addpat(int docNum, int patNum)
+        public void AddPatientToDoctor(int docNum, int patNum)
         {
             var context = new DataConection();
             var dep = context.Doctors.Where(x => x.Id == docNum).SingleOrDefault();
             var doc = context.Patients.Where(x => x.Id == patNum).SingleOrDefault();
             dep.patients.Add(doc);
-
-            
             context.SaveChanges();
         }
     }
