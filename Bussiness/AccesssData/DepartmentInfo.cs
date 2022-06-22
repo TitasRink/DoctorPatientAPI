@@ -29,13 +29,13 @@ namespace Bussiness.AccesssData
             List<DoctorModel> doc = new List<DoctorModel>();
             for (int i = 0; i < docNumber; i++)
             {
-                doc.Add(new DoctorModel($"FirstName{i}", $"LastName{i}", 20+i));
+                doc.Add(new DoctorModel($"Daktaras{i}", $"LastName{i}", 20+i));
             }
 
             List<PatientModel> pat = new List<PatientModel>();
             for (int i = 0; i < patNumber; i++)
             {
-                pat.Add(new PatientModel($"FirstName{i}", $"LastName{i}"));
+                pat.Add(new PatientModel($"Pacientas{i}", $"LastName{i}"));
             }
 
             for (int i = 0; i < pat.Count; i++)
@@ -44,6 +44,13 @@ namespace Bussiness.AccesssData
             }
 
             context.Departments.Add(new DepartmentModel(depName, depAddress, doc, pat));
+            context.SaveChanges();
+        }
+        public void DeleteDepartament(int depId)
+        {
+            var context = new DataConection();
+            var getDepId = context.Departments.Where(x => x.Id == depId).FirstOrDefault();
+            context.Departments.Remove(getDepId);
             context.SaveChanges();
         }
     }

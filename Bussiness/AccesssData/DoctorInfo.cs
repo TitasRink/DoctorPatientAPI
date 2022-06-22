@@ -1,5 +1,6 @@
 ﻿using FrameworkData.DataContext;
 using FrameworkData.Model;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,17 +32,19 @@ namespace Bussiness.AccesssData
         public List<DoctorModel> Doctorinfo(int docId)
         {
             var context = new DataConection();
-            //var rr = context.Doctors.Where(x => docId == x.patients.);
-            var dd = context.Doctors.Where(x => x.Id == docId).ToList();
+            var docInfo = context.Doctors.Where(x => x.Id == docId).ToList();
             
-            return (List<DoctorModel>)dd;
+            return (List<DoctorModel>)docInfo;
         }
         public void AddPatientToDoctor(int docNum, int patNum)
         {
             var context = new DataConection();
-            var dep = context.Doctors.Where(x => x.Id == docNum).SingleOrDefault();
-            var doc = context.Patients.Where(x => x.Id == patNum).SingleOrDefault();
-            dep.patients.Add(doc);
+            var doc = context.Doctors.Where(x => x.Id == docNum).FirstOrDefault();
+            var pat = context.Patients.Include(i=>i.doctors).Where(x => x.Id == patNum).FirstOrDefault();
+            doc.patients.Add(pat);
+            
+            pat.doctors.Clear();
+        
             context.SaveChanges();
         }
     }
