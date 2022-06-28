@@ -75,9 +75,23 @@ namespace APIHospital.Controllers
             }
         [HttpDelete("Delete Department by ID")]
         public void RemoveDepartament(int depId)
-        {
+            {
             var result = new DepartmentInfo();
             result.DeleteDepartament(depId);
+            }
+        [HttpGet("Show all department patients")]
+        public List<PatientModel> ShowDepPatients(int departmentID)
+        {
+            PatientInfo dep = new PatientInfo();
+            var result = dep.ShowDepPatients(departmentID);
+            return result;
+        }
+        [HttpGet("Show all doctor patients")]
+        public List<PatientModel> ShowDocPatients(int docId)
+        {
+            PatientInfo dep = new PatientInfo();
+            var result = dep.ShowDocPatients(docId);
+            return result;
         }
     }
 }

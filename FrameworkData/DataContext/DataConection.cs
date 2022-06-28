@@ -12,14 +12,14 @@ namespace FrameworkData.DataContext
         {
             builder.UseSqlServer("Server=localhost;Database=Hospital;Trusted_Connection=True;");
         }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Client>()
-        //        .HasOne(i => i.Restaurant)
-        //        .WithMany(i => i.Clients)
-        //        .IsRequired()
-        //        .OnDelete(DeleteBehavior.NoAction);
-        //}
     }
 }
+// info i ateiti kaip galima padaryti destytojo kodas
+//protected override void OnModelCreating(ModelBuilder modelBuilder)
+//{
+//    modelBuilder.Entity<Client>()
+//        .HasOne(i => i.Restaurant)
+//        .WithMany(i => i.Clients)
+//        .IsRequired()
+//        .OnDelete(DeleteBehavior.NoAction);
+//}

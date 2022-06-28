@@ -42,9 +42,7 @@ namespace Bussiness.AccesssData
             var doc = context.Doctors.Where(x => x.Id == docNum).FirstOrDefault();
             var pat = context.Patients.Include(i=>i.doctors).Where(x => x.Id == patNum).FirstOrDefault();
             doc.patients.Add(pat);
-            
             pat.doctors.Clear();
-        
             context.SaveChanges();
         }
     }
